@@ -19,8 +19,10 @@ public class JoueNote : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("TriggerLeft")) {
+			joue = true;
 			note.Play ();
 		} else if (Input.GetButtonUp ("TriggerLeft")) {
+			joue = false;
 			note.Stop();
 		}
 
@@ -28,6 +30,7 @@ public class JoueNote : MonoBehaviour {
 			float posY = controller.transform.position.y;
 			float distance = posY - centre;
 			note.pitch = 1f+(distance*distorsion);
+			note.pitch = Mathf.Clamp (note.pitch, 0f, 3f);
 		}
 	}
 }
